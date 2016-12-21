@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Try auDOMatic</title>
+    <script src="lib/audomatic.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="lib/reset.css">
+    <link rel="stylesheet" href="lib/audomatic_test.css">
+  </head>
+
+  <body>
+    <header>
+      Try auDOMatic
+    </header>
+    <figcaption>auDOMatic is an HTML DOM manipulation library built by Bart Mach.</figcaption>
+    <figcaption>Try out auDOMatic's methods below!</figcaption>
+
+    <article>
+      <h3 id="test-html">Hello! I'm inner HTML :)</h3>
+
+      <button id="test-html-get">html() : get inner HTML!</button>
+      <input type=text id="test-html-set" placeholder="html(arg) : set innerHTML!"></input>
+      <button id="test-html-empty">empty() : clear inner HTML!</button>
+
+      <button id="test-html-get-input">val() : get text box value!</button>
+      <button id="test-html-reset-input">val("") : reset text box value!</button>
+      <input type=text id="test-html-append" placeholder="append(string) : type and press [Return]!"></input>
+
+      <button id="test-html-bonus">Bonus message :)</button>
+    </article>
+
+    <article>
+      <h3 id="test-attr" key="The key is happiness!">Hello! Check out my attributes :)</h3>
+
+      <button id="test-attr-get">attr(name) : get element's attr('key')!</button>
+      <input type=text id="test-attr-set" placeholder="attr('key', value) : set the 'key' attribute!"></input>
+
+
+      <button id="test-attr-class-red-on">Add class: 'red-color'</button>
+      <button id="test-attr-class-yellow-on">Add class: 'yellow-border'</button>
+      <button id="test-attr-class-red-off">Remove class: 'red-color'</button>
+      <button id="test-attr-class-yellow-off">Remove class: 'yellow-border'</button>
+
+    </article>
+
+    <article>
+      <h3>My Favorite Animals</h3>
+      <button class="clear-list">empty(): Clear Animal List</button>
+      <button class="append-list">append(node): Append Animal to List</button>
+      <ul>
+        <li>Cat</li>
+        <li>Dog</li>
+        <li>Snake</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Use AJAX to get Weather for Ajax games!</h3>
+      <button class="get-weather">Update Amsterdam weather!</button>
+      <div id="ajax-weather"></div>
+    </article>
+
+
+
+    <script>
+      window.onload = () => {
+
+        const originalInnerHTML = "Hello! I'm inner HTML :)"
+
+        $au( "#test-html-get" ).on( "click", () => {
+          alert(`The element's HTML is ... ${ $au('#test-html').html()}`);
+        });
+
+        $au( "#test-html-set" ).on( "keyup", (e) => {
+          if (e.currentTarget.value.length > 0 ) {
+            $au('#test-html').html(e.currentTarget.value);
+          } else {
+            $au('#test-html').html(originalInnerHTML);
+          }
+        });
+
+        $au( "#test-html-empty" ).on( "click", () => {
+          $au("#test-html").empty();
+          $au( "#test-html-set" ).val("");
+        });
+
+        $au( "#test-html-get-input" ).on( "click", () => {
+          alert(`The text input contains ... ${ $au( "#test-html-set" ).val() }`);
+        });
+
+        $au( "#test-html-reset-input" ).on( "click", () => {
+          $au( "#test-html-set" ).val("");
+        });
+
+
+        $au( "#test-html-append" ).on( "keyup", (e) => {
+          console.log(e.keyCode);
+          if(e.keyCode == 13) {
+            $au('#test-html').append(e.currentTarget.value);
+          }
+        });
+
+        $au( "#test-html-bonus" ).on( "click", () => {
+          alert("All elements above use on(eventType) for event handling!!!");
+        });
+
+        // Attr Section
+
+        $au( "#test-attr-get" ).on( "click", () => {
+          alert(`The element's 'key' attribute is ... ${ $au('#test-attr').attr('key')}`);
+        });
+
+        $au( "#test-attr-set" ).on( "keyup", (e) => {
+          if (e.currentTarget.value.length > 0 ) {
+            $au('#test-attr').attr('key', e.currentTarget.value);
+          }
+        });
+
+        $au( "#test-attr-class-red-on" ).on( "click", () => {
+          $au('#test-attr').addClass('red-color');
+        });
+
+        $au( "#test-attr-class-yellow-on" ).on( "click", () => {
+          $au('#test-attr').addClass('yellow-border');
+        });
+
+        $au( "#test-attr-class-red-off" ).on( "click", () => {
+          $au('#test-attr').removeClass('red-color')
+        });
+
+        $au( "#test-attr-class-yellow-off" ).on( "click", () => {
+          c.removeClass('yellow-border')
+        });
+
+        // Append Remove Section
+
+        const animals = ['Cat', 'Dog', 'Snake'];
+        $au( "button.clear-list" ).on( "click", () => {
+          $au("ul").empty();
+        });
+
+        $au( "button.append-list" ).on( "click", () => {
+          $au("ul").append(
+            `<li>${animals[Math.floor(Math.random()*animals.length)]}</li>`
+          );
+        });
+
+        $au( "button.get-weather" ).on( "click", () => {
+          $au("div#ajax-weather").ajax({
+            url:  "http://api.openweathermap.org/data/2.5/weather",
+            data: {
+              APPID: "626bf0516d2cafa98061bab6cfb03d3c",
+              q: "Amsterdam, Netherlands" },
+            success: (data) => {
+              $au("div#ajax-weather").html(data);
+            },
+            error: (data) => {
+              $au("div#ajax-weather").html(data);
+            }
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
