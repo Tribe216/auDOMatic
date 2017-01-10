@@ -67,6 +67,13 @@ Or to load auDOMAtic DOM elements:
     $au('#test-attr').addClass('class_name')
     $au('#test-attr').removeClass('class_name')
 
+'aujax(params)' performs an HTMLHttpRequest:
+
+    $au(document).aujax({
+      method: "GET",
+      url:  "http://example.com"
+    }
+
 ## About the Author
 
 Bart Mach is a software developer based in New York City.
