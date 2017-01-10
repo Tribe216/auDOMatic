@@ -47,10 +47,10 @@
 	const DOMNodeCollection = __webpack_require__(1);
 	
 	function core(arg) {
-	  if (arg !== 'undefined' || arg.constructor.name === 'String') {
+	  if (arg.constructor.name === 'String') {
 	    const nodeList = document.querySelectorAll(arg);
 	    return new DOMNodeCollection(Array.from(nodeList));
-	  } else if (arg !== 'undefined' || arg instanceof HTMLElement) {
+	  } else if (arg instanceof HTMLElement) {
 	    return new DOMNodeCollection([arg]);
 	  } else {
 	    return new DOMNodeCollection(document);
