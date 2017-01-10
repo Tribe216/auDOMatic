@@ -53,7 +53,7 @@
 	  } else if (arg instanceof HTMLElement) {
 	    return new DOMNodeCollection([arg]);
 	  } else {
-	    return new DOMNodeCollection(document);
+	    return new DOMNodeCollection([document]);
 	  }
 	}
 	
