@@ -1,6 +1,6 @@
 ![CrossTire Logo](logo.png)
 
-[Link to Demo](http://tribe216.github.io/auDOMatic)
+[Link to Demo](http://audomatic.herokuapp.com/index.html)
 
 auDOMatic is an easy-to-use API  that makes HTML document data retrieval, modifications, and even AJAX calls easy and intuitive.
 
@@ -10,7 +10,7 @@ auDOMatic requires a JavaScript-enabled browser.
 
 ## Usage
 
-#### Please go to the [demo page](http://tribe216.github.io/auDOMatic/) for an intuitive tutorial!
+#### Please go to the [demo page](http://audomatic.herokuapp.com/index.html) for an intuitive tutorial!
 
 Include the auDOMatic bundled Javascript file in your HTML page.
 
